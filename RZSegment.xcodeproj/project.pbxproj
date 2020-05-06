@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,15 @@
 		76E7C332245AA16A008CE2E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E7C330245AA16A008CE2E5 /* Main.storyboard */; };
 		76E7C334245AA16E008CE2E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E7C333245AA16E008CE2E5 /* Assets.xcassets */; };
 		76E7C337245AA16E008CE2E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E7C335245AA16E008CE2E5 /* LaunchScreen.storyboard */; };
+		76E7C345245AA51B008CE2E5 /* RZSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C344245AA51B008CE2E5 /* RZSegmentView.swift */; };
+		76E7C347245AB66F008CE2E5 /* RZSegmentPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C346245AB66F008CE2E5 /* RZSegmentPagesView.swift */; };
+		76E7C34A245AD65E008CE2E5 /* IndexDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C349245AD65D008CE2E5 /* IndexDemoViewController.swift */; };
+		76E7C34C245AD66B008CE2E5 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */; };
+		C75D36ABD1BA12B7E196A2AE /* Pods_RZSegment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C277DFFB35EC8776F46F64 /* Pods_RZSegment.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70C277DFFB35EC8776F46F64 /* Pods_RZSegment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RZSegment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E7C327245AA16A008CE2E5 /* RZSegment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RZSegment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E7C32A245AA16A008CE2E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E7C32C245AA16A008CE2E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +30,13 @@
 		76E7C333245AA16E008CE2E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76E7C336245AA16E008CE2E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76E7C338245AA16E008CE2E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76E7C340245AA4E1008CE2E5 /* RZSegment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RZSegment-Bridging-Header.h"; sourceTree = "<group>"; };
+		76E7C344245AA51B008CE2E5 /* RZSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RZSegmentView.swift; sourceTree = "<group>"; };
+		76E7C346245AB66F008CE2E5 /* RZSegmentPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RZSegmentPagesView.swift; sourceTree = "<group>"; };
+		76E7C349245AD65D008CE2E5 /* IndexDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDemoViewController.swift; sourceTree = "<group>"; };
+		76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
+		9248959C07ED48339B5B1349 /* Pods-RZSegment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RZSegment.debug.xcconfig"; path = "Target Support Files/Pods-RZSegment/Pods-RZSegment.debug.xcconfig"; sourceTree = "<group>"; };
+		FBB4C5294BC1F9323DE36E27 /* Pods-RZSegment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RZSegment.release.xcconfig"; path = "Target Support Files/Pods-RZSegment/Pods-RZSegment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C75D36ABD1BA12B7E196A2AE /* Pods_RZSegment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +56,8 @@
 			children = (
 				76E7C329245AA16A008CE2E5 /* RZSegment */,
 				76E7C328245AA16A008CE2E5 /* Products */,
+				B667CB836BD264D252F1EB5C /* Pods */,
+				C58C0631B1815FEF57184D76 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +72,8 @@
 		76E7C329245AA16A008CE2E5 /* RZSegment */ = {
 			isa = PBXGroup;
 			children = (
+				76E7C348245AD643008CE2E5 /* Demo */,
+				76E7C33E245AA3C8008CE2E5 /* Core */,
 				76E7C32A245AA16A008CE2E5 /* AppDelegate.swift */,
 				76E7C32C245AA16A008CE2E5 /* SceneDelegate.swift */,
 				76E7C32E245AA16A008CE2E5 /* ViewController.swift */,
@@ -63,8 +81,44 @@
 				76E7C333245AA16E008CE2E5 /* Assets.xcassets */,
 				76E7C335245AA16E008CE2E5 /* LaunchScreen.storyboard */,
 				76E7C338245AA16E008CE2E5 /* Info.plist */,
+				76E7C340245AA4E1008CE2E5 /* RZSegment-Bridging-Header.h */,
 			);
 			path = RZSegment;
+			sourceTree = "<group>";
+		};
+		76E7C33E245AA3C8008CE2E5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				76E7C344245AA51B008CE2E5 /* RZSegmentView.swift */,
+				76E7C346245AB66F008CE2E5 /* RZSegmentPagesView.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		76E7C348245AD643008CE2E5 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				76E7C349245AD65D008CE2E5 /* IndexDemoViewController.swift */,
+				76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		B667CB836BD264D252F1EB5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9248959C07ED48339B5B1349 /* Pods-RZSegment.debug.xcconfig */,
+				FBB4C5294BC1F9323DE36E27 /* Pods-RZSegment.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C58C0631B1815FEF57184D76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70C277DFFB35EC8776F46F64 /* Pods_RZSegment.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76E7C33B245AA16E008CE2E5 /* Build configuration list for PBXNativeTarget "RZSegment" */;
 			buildPhases = (
+				248BB2EF8D372F4FFB274F91 /* [CP] Check Pods Manifest.lock */,
 				76E7C323245AA16A008CE2E5 /* Sources */,
 				76E7C324245AA16A008CE2E5 /* Frameworks */,
 				76E7C325245AA16A008CE2E5 /* Resources */,
+				A0F8D14E12F4B5E4771201AA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +155,7 @@
 				TargetAttributes = {
 					76E7C326245AA16A008CE2E5 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -133,13 +190,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		248BB2EF8D372F4FFB274F91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RZSegment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0F8D14E12F4B5E4771201AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RZSegment/Pods-RZSegment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RZSegment/Pods-RZSegment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RZSegment/Pods-RZSegment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		76E7C323245AA16A008CE2E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76E7C34C245AD66B008CE2E5 /* ChildViewController.swift in Sources */,
+				76E7C347245AB66F008CE2E5 /* RZSegmentPagesView.swift in Sources */,
+				76E7C345245AA51B008CE2E5 /* RZSegmentView.swift in Sources */,
 				76E7C32F245AA16A008CE2E5 /* ViewController.swift in Sources */,
 				76E7C32B245AA16A008CE2E5 /* AppDelegate.swift in Sources */,
+				76E7C34A245AD65E008CE2E5 /* IndexDemoViewController.swift in Sources */,
 				76E7C32D245AA16A008CE2E5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,17 +385,21 @@
 		};
 		76E7C33C245AA16E008CE2E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9248959C07ED48339B5B1349 /* Pods-RZSegment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9363D6U2QU;
+				DEVELOPMENT_TEAM = LBSWTUGGNB;
 				INFOPLIST_FILE = RZSegment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZSegment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZColorfulExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RZSegment/RZSegment-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,17 +407,20 @@
 		};
 		76E7C33D245AA16E008CE2E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBB4C5294BC1F9323DE36E27 /* Pods-RZSegment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9363D6U2QU;
+				DEVELOPMENT_TEAM = LBSWTUGGNB;
 				INFOPLIST_FILE = RZSegment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZSegment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZColorfulExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RZSegment/RZSegment-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

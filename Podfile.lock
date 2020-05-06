@@ -1,0 +1,36 @@
+PODS:
+  - FBRetainCycleDetector (0.1.4)
+  - MJRefresh (3.3.1)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
+  - RZColorfulSwift (0.1.2)
+  - SnapKit (4.2.0)
+  - Then (2.6.0)
+
+DEPENDENCIES:
+  - MJRefresh
+  - MLeaksFinder
+  - RZColorfulSwift
+  - SnapKit
+  - Then
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - FBRetainCycleDetector
+    - MJRefresh
+    - MLeaksFinder
+    - RZColorfulSwift
+    - SnapKit
+    - Then
+
+SPEC CHECKSUMS:
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
+  RZColorfulSwift: de1efb1f468b6f00f4225cb6242bfa2c5137b347
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
+
+PODFILE CHECKSUM: 71605aebcd53254458f0657aa098a9ba2fea42a1
+
+COCOAPODS: 1.9.1
