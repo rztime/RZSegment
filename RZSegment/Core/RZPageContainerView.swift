@@ -367,7 +367,6 @@ class RZCustomScrollView : UIScrollView, UIGestureRecognizerDelegate, UIScrollVi
         return true
     }
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.rzLastContentOffset = scrollView.contentOffset
         self.willScroll?(self)
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -380,8 +379,8 @@ class RZCustomScrollView : UIScrollView, UIGestureRecognizerDelegate, UIScrollVi
         }
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.rzLastContentOffset = scrollView.contentOffset
         self.didScroll?(self, true)
+        self.rzLastContentOffset = scrollView.contentOffset
         self.isUserInteractionEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.isUserInteractionEnabled = true
