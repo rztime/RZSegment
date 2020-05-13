@@ -55,7 +55,8 @@ open class RZSegmentView: UIView {
     
     // segment的collectionView (初始化的时候隐藏，reloaddata之后显示，避免刚刚出现的时候跳动)
     var collectionView: UICollectionView!
-    
+    // 自定义cell
+    var rzCustomCell:((_ collectionView: UICollectionView, _ indexPath:IndexPath) -> RZSegmentItemViewCell)?
     // 选中时，添加一个背景图层
     private var itemBackgroundView = UIView().then {
         $0.isHidden = true
@@ -209,47 +210,62 @@ extension RZSegmentView {
         }
     }
     
-    func updateCollectionViewFrame() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            print("self.collecitonView.bounds\(self.collectionView.contentSize)")
+    func collectionViewContentSize() -> CGSize {
+        var contentSize = CGSize.zero
+        let layout = UICollectionViewLayout.init()
+        for (index, _) in rzItems.enumerated() {
+            let size = self.collectionView(self.collectionView, layout: layout, sizeForItemAt: IndexPath.init(row: index, section: 0))
             if self.rzScrollDirection == .horizontal {
-                var size : CGSize = .zero
-                if self.collectionView.contentSize.width > self.bounds.size.width {
-                    size = self.bounds.size
-                } else {
-                    size = self.collectionView.contentSize
-                }
-                switch self.rzStyle {
-                case .auto:
-                    self.collectionView.frame = .init(x: (self.bounds.size.width - size.width) / 2.0, y: (self.bounds.size.height - size.height) / 2.0, width: size.width, height: size.height)
-                case .left:
-                    self.collectionView.frame = .init(x: 0, y: 0, width: size.width, height: size.height)
-                case .right:
-                    self.collectionView.frame = .init(x: self.bounds.size.width - size.width, y: 0, width: size.width, height: size.height)
-                default:
-                    break
-                }
+                contentSize.width += size.width
+                contentSize.height = size.height
             } else {
-                var size : CGSize = .zero
-                if self.collectionView.contentSize.height > self.bounds.size.height {
-                    size = self.bounds.size
-                } else {
-                    size = self.collectionView.contentSize
-                }
-                switch self.rzStyle {
-                case .auto:
-                    self.collectionView.frame = .init(x: (self.bounds.size.width - size.width) / 2.0, y: max(0, (self.bounds.size.height - size.height) / 2.0), width: size.width, height: size.height)
-                case .top:
-                    self.collectionView.frame = .init(x: (self.bounds.size.width - size.width)/2.0, y: 0, width: size.width, height: size.height)
-                case .bottom:
-                    self.collectionView.frame = .init(x: (self.bounds.size.width - size.width)/2.0, y: self.bounds.size.height - size.height, width: size.width, height: size.height)
-                default:
-                    break
-                }
+                contentSize.width = size.width
+                contentSize.height += size.height
             }
-            self.collectionView.isHidden = false
         }
+        return contentSize
     }
+    
+    func updateCollectionViewFrame() {
+        let collectionViewContentSize = self.collectionViewContentSize()
+        if self.rzScrollDirection == .horizontal {
+            var size : CGSize = .zero
+            if collectionViewContentSize.width > self.bounds.size.width {
+                size = self.bounds.size
+            } else {
+                size = collectionViewContentSize
+            }
+            switch self.rzStyle {
+            case .auto:
+                self.collectionView.frame = .init(x: (self.bounds.size.width - size.width) / 2.0, y: (self.bounds.size.height - size.height) / 2.0, width: size.width, height: size.height)
+            case .left:
+                self.collectionView.frame = .init(x: 0, y: 0, width: size.width, height: size.height)
+            case .right:
+                self.collectionView.frame = .init(x: self.bounds.size.width - size.width, y: 0, width: size.width, height: size.height)
+            default:
+                break
+            }
+        } else {
+            var size : CGSize = .zero
+            if collectionViewContentSize.height > self.bounds.size.height {
+                size = self.bounds.size
+            } else {
+                size = collectionViewContentSize
+            }
+            switch self.rzStyle {
+            case .auto:
+                self.collectionView.frame = .init(x: (self.bounds.size.width - size.width) / 2.0, y: max(0, (self.bounds.size.height - size.height) / 2.0), width: size.width, height: size.height)
+            case .top:
+                self.collectionView.frame = .init(x: (self.bounds.size.width - size.width)/2.0, y: 0, width: size.width, height: size.height)
+            case .bottom:
+                self.collectionView.frame = .init(x: (self.bounds.size.width - size.width)/2.0, y: self.bounds.size.height - size.height, width: size.width, height: size.height)
+            default:
+                break
+            }
+        }
+        self.collectionView.isHidden = false
+    }
+    
 }
 //MARK:segmentView的代理方法
 extension RZSegmentView : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -278,7 +294,12 @@ extension RZSegmentView : UICollectionViewDataSource, UICollectionViewDelegate, 
             return value(self)
         }
     }
+    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let custom = self.rzCustomCell?(collectionView, indexPath)
+        if custom != nil {
+            return custom!
+        }
         let cell : RZSegmentItemViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RZSegmentItemViewCell
         let selected = self.index == indexPath.row
         let configure :RZSegmentItemStyle = selected ? self.rzHightLightItemStyle : self.rzDefaultItemStyle
@@ -295,20 +316,26 @@ extension RZSegmentView : UICollectionViewDataSource, UICollectionViewDelegate, 
 }
 //MARK:segmentView对外的公用方法
 extension RZSegmentView {
-    // 改变当前选择的索引
-    open func setCurrentIndex(index:Int, animation:Bool) {
+    /// 改变当前选择的索引
+    /// - Parameters:
+    ///   - notice: 是否去通知回调，以方便在回调中进行处理索引改变事件
+    open func setCurrentIndex(index:Int, animation:Bool, notice:Bool = true) {
         if index >= self.rzItems.count {
             self.collectionView.reloadData()
             return
         }
         // 如果不允许修改，则不作处理
-        let allow = self.rzWillChangedIndex?(self, index) ?? true
-        if !allow {
-            return
+        if notice {
+            let allow = self.rzWillChangedIndex?(self, index) ?? true
+            if !allow {
+                return
+            }
         }
         self.index = index
         self.reloadData()
-        self.rzDidChangedIndex?(self, index)
+        if notice {
+            self.rzDidChangedIndex?(self, index)
+        }
     }
     open func reloadData(animation:Bool = true) {
         if self.index >= self.rzItems.count {
@@ -316,11 +343,8 @@ extension RZSegmentView {
             return
         }
         self.isUserInteractionEnabled = false
-        
-        self.collectionView.reloadData()
-        self.collectionView.layoutIfNeeded()
-        self.collectionView.layoutSubviews()
         self.updateCollectionViewFrame()
+        self.collectionView.reloadData()
         if self.rzItems.count > 0 {
             self.collectionView.scrollToItem(at: IndexPath.init(row: index, section: 0), at: (self.rzScrollDirection == .horizontal ? .centeredHorizontally : .centeredVertically), animated: animation)
         }
@@ -333,12 +357,12 @@ extension RZSegmentView {
 
 //MARK: segment view的单独一个item的视图
 open class RZSegmentItemViewCell : UICollectionViewCell {
-    var textLabel:UILabel = UILabel().then {
+    open var textLabel:UILabel = UILabel().then {
         $0.numberOfLines = 0
         $0.textColor = UIColor.init(white: 0.1, alpha: 0.7)
         $0.font = UIFont.systemFont(ofSize: 14)
     }
-    var badgeLabel:UILabel = UILabel().then {
+    open var badgeLabel:UILabel = UILabel().then {
         $0.numberOfLines = 1
         $0.textColor = UIColor.red
         $0.font = UIFont.systemFont(ofSize: 7)
@@ -346,7 +370,7 @@ open class RZSegmentItemViewCell : UICollectionViewCell {
         $0.textAlignment = .center
         $0.baselineAdjustment = .alignCenters
     }
-    var separateLine = UIView().then {
+    open var separateLine = UIView().then {
         $0.layer.masksToBounds = true
     }
     override init(frame: CGRect) {
@@ -369,7 +393,7 @@ open class RZSegmentItemViewCell : UICollectionViewCell {
             make.centerX.equalTo(self.contentView.snp.right)
         }
     }
-    func setSeparateLineConfigure(type:RZSegmentView.RZSegmentSeparateLineStyle) {
+    open func setSeparateLineConfigure(type:RZSegmentView.RZSegmentSeparateLineStyle) {
         switch type {
         case .none:
             return
@@ -382,7 +406,7 @@ open class RZSegmentItemViewCell : UICollectionViewCell {
         }
     }
     
-    func setData(configure:RZSegmentView.RZSegmentItemStyle, content:RZSegmentView.RZSegmentItemContent, selected:Bool) {
+    open func setData(configure:RZSegmentView.RZSegmentItemStyle, content:RZSegmentView.RZSegmentItemContent, selected:Bool) {
         // 背景
         self.contentView.backgroundColor = configure.bgColor
         // 标题
@@ -414,7 +438,7 @@ open class RZSegmentItemViewCell : UICollectionViewCell {
         self.badgeLabel.backgroundColor = configure.badgeBgColor
         self.badgeLabel.layer.cornerRadius = configure.badgeFont.pointSize / 2.0 - 1
     }
-    func rzTextAlign(_ a:RZSegmentView.RZSegmentItemTextAlignStyle) {
+    open func rzTextAlign(_ a:RZSegmentView.RZSegmentItemTextAlignStyle) {
         switch a {
         case .center:
             textLabel.snp.remakeConstraints { (make) in

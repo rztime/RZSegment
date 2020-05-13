@@ -41,8 +41,9 @@ class ViewController: UIViewController {
         segmentThree()
         segmentFour()
 //        }
+//        let scrollView = UIScrollView.init(frame: self.view.bounds)
+//        self.view.addSubview(scrollView)
     }
-    
     // 常用，只有常态文字和高亮（选中）状态文字
     func segmentOne() {
         let segment = RZSegmentView.init(frame: .init(x: 0, y: 100, width: self.view.frame.size.width, height: 44))
@@ -52,13 +53,14 @@ class ViewController: UIViewController {
         segment.rzHightLightItemStyle = .init(font: .systemFont(ofSize: 16), textColor: .red)
     
         segment.rzDidChangedIndex = { (seg, index) in
-            print("点击：\(index)")
-            self.navigationController?.pushViewController(IndexDemoViewController(), animated: true)
+            if index == 2 {
+                self.navigationController?.pushViewController(ChildRefreshIndexViewController(), animated: true)
+            } 
         }
         segment.rzItems = [
             .init(text: "标题1"),
             .init(text: "标题2"),
-            .init(text: "标题3"),
+            .init(text: "内部刷新"),
             .init(text: "标题4"),
             .init(text: "标题5"),
             .init(text: "标题6"),
@@ -78,8 +80,11 @@ class ViewController: UIViewController {
 
         segment.rzDidChangedIndex = { (seg, index) in
             print("点击：\(index)")
+            if index == 2 {
+                self.navigationController?.pushViewController(TopRefreshIndexViewController(), animated: true)
+            }
         }
-        
+        // 底部线条
         segment.rzBottomLineStyle = .auto(leadingMargin: 10, height: 3, bottomMargin: 3, color: .red)
         
         // 默认样式为auto，当标题显示的文本宽度不能超过view本身的宽度，则居中显示
@@ -87,7 +92,7 @@ class ViewController: UIViewController {
         segment.rzItems = [
             .init(text: "标题", badge: "3"),
             .init(text: "标题"),
-            .init(text: "标题"),
+            .init(text: "顶部刷新"),
         ]
         segment.reloadData()
     }
@@ -151,3 +156,6 @@ class ViewController: UIViewController {
 
 }
 
+func kNavBarHeight() -> CGFloat { 
+    return UIApplication.shared.statusBarFrame.size.height + 44
+}

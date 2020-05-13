@@ -10,5 +10,5 @@ target 'RZSegment' do
 	pod 'SnapKit'
 	pod 'Then'
 	pod 'MJRefresh' 
-	pod 'MLeaksFinder'
+	#pod 'MLeaksFinder'
 end

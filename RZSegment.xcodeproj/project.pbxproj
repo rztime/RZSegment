@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		767DE3522469498C00A2BF73 /* RZPageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767DE3512469498C00A2BF73 /* RZPageContainerView.swift */; };
+		767DE3542469561300A2BF73 /* ChildRefreshIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */; };
+		7686A7E4246B8DB300B95FA1 /* TopRefreshIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */; };
 		76E7C32B245AA16A008CE2E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C32A245AA16A008CE2E5 /* AppDelegate.swift */; };
 		76E7C32D245AA16A008CE2E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C32C245AA16A008CE2E5 /* SceneDelegate.swift */; };
 		76E7C32F245AA16A008CE2E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C32E245AA16A008CE2E5 /* ViewController.swift */; };
@@ -14,14 +17,15 @@
 		76E7C334245AA16E008CE2E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E7C333245AA16E008CE2E5 /* Assets.xcassets */; };
 		76E7C337245AA16E008CE2E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76E7C335245AA16E008CE2E5 /* LaunchScreen.storyboard */; };
 		76E7C345245AA51B008CE2E5 /* RZSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C344245AA51B008CE2E5 /* RZSegmentView.swift */; };
-		76E7C347245AB66F008CE2E5 /* RZSegmentPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C346245AB66F008CE2E5 /* RZSegmentPagesView.swift */; };
-		76E7C34A245AD65E008CE2E5 /* IndexDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C349245AD65D008CE2E5 /* IndexDemoViewController.swift */; };
 		76E7C34C245AD66B008CE2E5 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */; };
 		C75D36ABD1BA12B7E196A2AE /* Pods_RZSegment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C277DFFB35EC8776F46F64 /* Pods_RZSegment.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70C277DFFB35EC8776F46F64 /* Pods_RZSegment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RZSegment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		767DE3512469498C00A2BF73 /* RZPageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RZPageContainerView.swift; sourceTree = "<group>"; };
+		767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildRefreshIndexViewController.swift; sourceTree = "<group>"; };
+		7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRefreshIndexViewController.swift; sourceTree = "<group>"; };
 		76E7C327245AA16A008CE2E5 /* RZSegment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RZSegment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E7C32A245AA16A008CE2E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76E7C32C245AA16A008CE2E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,8 +36,6 @@
 		76E7C338245AA16E008CE2E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76E7C340245AA4E1008CE2E5 /* RZSegment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RZSegment-Bridging-Header.h"; sourceTree = "<group>"; };
 		76E7C344245AA51B008CE2E5 /* RZSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RZSegmentView.swift; sourceTree = "<group>"; };
-		76E7C346245AB66F008CE2E5 /* RZSegmentPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RZSegmentPagesView.swift; sourceTree = "<group>"; };
-		76E7C349245AD65D008CE2E5 /* IndexDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDemoViewController.swift; sourceTree = "<group>"; };
 		76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		9248959C07ED48339B5B1349 /* Pods-RZSegment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RZSegment.debug.xcconfig"; path = "Target Support Files/Pods-RZSegment/Pods-RZSegment.debug.xcconfig"; sourceTree = "<group>"; };
 		FBB4C5294BC1F9323DE36E27 /* Pods-RZSegment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RZSegment.release.xcconfig"; path = "Target Support Files/Pods-RZSegment/Pods-RZSegment.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				76E7C344245AA51B008CE2E5 /* RZSegmentView.swift */,
-				76E7C346245AB66F008CE2E5 /* RZSegmentPagesView.swift */,
+				767DE3512469498C00A2BF73 /* RZPageContainerView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -98,8 +100,9 @@
 		76E7C348245AD643008CE2E5 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				76E7C349245AD65D008CE2E5 /* IndexDemoViewController.swift */,
 				76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */,
+				767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */,
+				7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -238,12 +241,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E7C34C245AD66B008CE2E5 /* ChildViewController.swift in Sources */,
-				76E7C347245AB66F008CE2E5 /* RZSegmentPagesView.swift in Sources */,
 				76E7C345245AA51B008CE2E5 /* RZSegmentView.swift in Sources */,
 				76E7C32F245AA16A008CE2E5 /* ViewController.swift in Sources */,
 				76E7C32B245AA16A008CE2E5 /* AppDelegate.swift in Sources */,
-				76E7C34A245AD65E008CE2E5 /* IndexDemoViewController.swift in Sources */,
 				76E7C32D245AA16A008CE2E5 /* SceneDelegate.swift in Sources */,
+				767DE3542469561300A2BF73 /* ChildRefreshIndexViewController.swift in Sources */,
+				767DE3522469498C00A2BF73 /* RZPageContainerView.swift in Sources */,
+				7686A7E4246B8DB300B95FA1 /* TopRefreshIndexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,13 +394,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LBSWTUGGNB;
+				DEVELOPMENT_TEAM = 9363D6U2QU;
 				INFOPLIST_FILE = RZSegment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZColorfulExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZSegment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RZSegment/RZSegment-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -412,13 +416,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LBSWTUGGNB;
+				DEVELOPMENT_TEAM = 9363D6U2QU;
 				INFOPLIST_FILE = RZSegment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZColorfulExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rztime.RZSegment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RZSegment/RZSegment-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

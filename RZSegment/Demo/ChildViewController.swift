@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RZPageContainerChildViewDelegate {
+    
+    func rzScrollView() -> UIScrollView? {
+        return tableView
+    }
+    
 
     let tableView = UITableView.init(frame: .zero, style: .plain)
     
@@ -17,9 +22,9 @@ class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var refreshComplete : (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         self.view.addSubview(tableView)
+         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.snp.makeConstraints { (make) in
@@ -27,21 +32,35 @@ class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] in
+            self?.requestDataByRefresh(refresh: true)
+        })
+//
         tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: { [weak self] in
             self?.requestDataByRefresh(refresh: false)
         })
-        
-        self.requestDataByRefresh(refresh: true)
+        self.tableView.mj_header?.beginRefreshing()
+//        requestDataByRefresh(refresh:true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("\(String(describing: self.title)) viewWillAppear")
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("\(String(describing: self.title)) viewWillDisappear")
     }
     
     // 请求网络数据 （模拟）
     func requestDataByRefresh(refresh:Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.mj_footer?.endRefreshing()
+            self.tableView.mj_header?.endRefreshing()
             if refresh {
                 self.datas.removeAll()
             }
-            self.datas.append(contentsOf: [1,2,3,4,5,6,7,8,9,10])
+            self.datas.append(contentsOf: [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10])
             self.tableView.reloadData()
             // 刷新完毕，回调让外层的tableview关闭header刷新状态
             if refresh {
@@ -63,20 +82,8 @@ class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell?.textLabel?.text = self.title! + "\(indexPath.row)"
         return cell!
     }
-    
-}
-
-extension ChildViewController : RZSegmentPagesChildViewControllerDelegate {
-
-    func getScrollViewTopOffsetY() -> CGFloat {
-        return 0
-    }
-    func beginRefresh(complete: (() -> Void)?) {
-        self.refreshComplete = complete
-        // 刷新数据
-        self.requestDataByRefresh(refresh: true)
-    }
-    func getScrollView() -> UIScrollView? {
-        return tableView
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath)")
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
