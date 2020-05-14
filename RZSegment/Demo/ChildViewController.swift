@@ -45,11 +45,9 @@ class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("\(String(describing: self.title)) viewWillAppear")
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("\(String(describing: self.title)) viewWillDisappear")
     }
     
     // 请求网络数据 （模拟）
@@ -83,7 +81,6 @@ class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath)")
         tableView.deselectRow(at: indexPath, animated: false)
     }
 }

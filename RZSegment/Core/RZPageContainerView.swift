@@ -12,7 +12,7 @@ protocol RZPageContainerChildViewDelegate {
     func rzScrollView() -> UIScrollView?
 }
 // 主界面的delegate
-protocol RZPageContainerViewDelegate {
+@objc protocol RZPageContainerViewDelegate {
     // 最大移动的位移（悬停时，scrollview的contentOffset.y） 如果没有额外的topView，则为0
     func rzMaxContentOffsetY() -> CGFloat
 }
@@ -31,11 +31,13 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
     open var childVCs : [UIViewController & RZPageContainerChildViewDelegate] = []
     open var childViews : [UIView & RZPageContainerChildViewDelegate] = []
     
-    open var delegate : RZPageContainerViewDelegate?
+    open weak var delegate : RZPageContainerViewDelegate?
     
     open var currentIndex : Int {
         return self.segmentView.currentIndex
     }
+    // 每次切换时，将会调用
+    open var didShowedViewWithIndex:((_ index:Int) -> Void)?
     
     // 正在改变索引
     private var changeIndexIng : Bool = false
@@ -43,8 +45,10 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
     // 当设置了contentView的刷新（mj_header）之后，请设置为false，主要作用在于手势完成之后，修正contentView的contentOffset
     open var autoFixContentViewOffsetY = true
     
+    private var willShowedIndex : Int?
     private let childViewTag = 1001
     
+    private var isPanSuperView = false
     init(frame: CGRect, delegate:RZPageContainerViewDelegate) {
         super.init(frame: frame)
         self.delegate = delegate
@@ -131,9 +135,15 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
             var willShowIndex : Int? = nil
             switch scrollView.rzScrollDirection() {
             case .toLeft:
+                if CGFloat(self?.currentIndex ?? 0) * scrollView.frame.size.width - scrollView.contentOffset.x >= 0 {
+                    return
+                }
                 willShowIndex = (self?.currentIndex ?? 0) + 1
                 break
             case .toRight:
+                if CGFloat(self?.currentIndex ?? 0) * scrollView.frame.size.width - scrollView.contentOffset.x <= 0 {
+                    return
+                }
                 willShowIndex = (self?.currentIndex ?? 0) - 1
                 break
             default:
@@ -154,6 +164,10 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
             if willShowIndex! > (self?.pages() ?? 0)  || willShowIndex! < 0 {
                 return
             }
+            if willShowIndex == self?.willShowedIndex {
+                return
+            }
+            self?.willShowedIndex = willShowIndex
             // 加载将要显示的
             self?.willShowIndex(willShowIndex!)
         }
@@ -190,9 +204,13 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
             childScrollView.rzLastContentOffset = childScrollView.contentOffset
         }
         contentView.didScroll = { [weak self] (scrollView, finish) in
+            if finish {
+                self?.isPanSuperView = false
+            }
             guard let childScrollView = self?.currentChildScrollView() else {
                 return
             }
+          
             // 最大偏移量
             let maxOffsetY = self?.delegate?.rzMaxContentOffsetY() ?? 0
             if scrollView.contentOffset.y >= maxOffsetY {
@@ -200,6 +218,13 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
                 scrollView.setContentOffset(.init(x: 0, y: maxOffsetY), animated: false)
                 scrollView.rzLastContentOffset = scrollView.contentOffset
             }
+            let point = scrollView.panGestureRecognizer.location(in: self)
+            let frame = childScrollView.convert(childScrollView.bounds, to: self)
+            if !frame.contains(point) || self?.isPanSuperView == true {
+                // 当触摸的点不在子视图上时，外层可以随意
+                self?.isPanSuperView = true
+                return
+            } 
             // 在上下运动过程中
             let dir = scrollView.rzScrollDirection()
             switch dir {
@@ -261,6 +286,7 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
         } else {
             return
         }
+        self.didShowedViewWithIndex?(index)
         if view.subviews.first == childView {
             return
         } else {

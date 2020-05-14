@@ -79,7 +79,6 @@ class ViewController: UIViewController {
         segment.rzHightLightItemStyle = .init(font: .systemFont(ofSize: 16), textColor: .red)
 
         segment.rzDidChangedIndex = { (seg, index) in
-            print("点击：\(index)")
             if index == 2 {
                 self.navigationController?.pushViewController(TopRefreshIndexViewController(), animated: true)
             }
