@@ -44,12 +44,12 @@ class TopRefreshIndexViewController: UIViewController {
 
         topView.backgroundColor = .red
         // 4.如果有顶部图，加上
-        pageView?.topView = topView
+//        pageView?.topView = topView
         // 5. 配置完成之后，刷新，但凡有改变数据源、改变view的布局等等，都需要调用reloaddata，
-        pageView?.reloadData()
+//        pageView?.reloadData()
         
         // 改变索引 这个不需要reloadData
-        pageView?.setCurrentIndex(index: 1, animation: true)
+//        pageView?.setCurrentIndex(index: 1, animation: true)
         
         pageView?.autoFixContentViewOffsetY = false
         pageView?.contentView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {[weak self] in
@@ -61,6 +61,7 @@ class TopRefreshIndexViewController: UIViewController {
                 self?.pageView?.reloadData()
             }
         })
+        pageView?.contentView.mj_header?.beginRefreshing()
     }
 }
 

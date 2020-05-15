@@ -8,15 +8,15 @@
 
 import UIKit
 // 需要翻页的界面的delegate
-protocol RZPageContainerChildViewDelegate {
+@objc public protocol RZPageContainerChildViewDelegate {
     func rzScrollView() -> UIScrollView?
 }
 // 主界面的delegate
-@objc protocol RZPageContainerViewDelegate {
+@objc public protocol RZPageContainerViewDelegate {
     // 最大移动的位移（悬停时，scrollview的contentOffset.y） 如果没有额外的topView，则为0
     func rzMaxContentOffsetY() -> CGFloat
 }
-class RZPageContainerView: UIView, UIScrollViewDelegate {
+open class RZPageContainerView: UIView, UIScrollViewDelegate {
     // 容器
     open var contentView : RZCustomScrollView!
     // 分页控件
@@ -218,13 +218,15 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
                 scrollView.setContentOffset(.init(x: 0, y: maxOffsetY), animated: false)
                 scrollView.rzLastContentOffset = scrollView.contentOffset
             }
-            let point = scrollView.panGestureRecognizer.location(in: self)
-            let frame = childScrollView.convert(childScrollView.bounds, to: self)
-            if !frame.contains(point) || self?.isPanSuperView == true {
-                // 当触摸的点不在子视图上时，外层可以随意
-                self?.isPanSuperView = true
-                return
-            } 
+            if scrollView.panGestureRecognizer.state == .began {
+                let point = scrollView.panGestureRecognizer.location(in: self)
+                let frame = childScrollView.convert(childScrollView.bounds, to: self)
+                if !frame.contains(point) || self?.isPanSuperView == true {
+                    // 当触摸的点不在子视图上时，外层可以随意
+                    self?.isPanSuperView = true
+                    return
+                }
+            }
             // 在上下运动过程中
             let dir = scrollView.rzScrollDirection()
             switch dir {
@@ -300,12 +302,12 @@ class RZPageContainerView: UIView, UIScrollViewDelegate {
             }
         }
     }
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension UIScrollView {
+public extension UIScrollView {
     fileprivate struct RZScrollViewPerpotyName {
         static var canSlide = "canSlide"
         static var lastContentOffset = "lastContentOffset"
@@ -366,7 +368,7 @@ extension UIScrollView {
 }
 
 
-class RZCustomScrollView : UIScrollView, UIGestureRecognizerDelegate, UIScrollViewDelegate{
+open class RZCustomScrollView : UIScrollView, UIGestureRecognizerDelegate, UIScrollViewDelegate{
     // 滑动之后的回调，  h:水平滑动的方向，v：垂直滑动的方向
     open var didScroll:((_ view: RZCustomScrollView, _ finish:Bool) -> Void)?
     // 将要滑动
@@ -382,29 +384,29 @@ class RZCustomScrollView : UIScrollView, UIGestureRecognizerDelegate, UIScrollVi
         self.panGestureRecognizer.addTarget(self, action: #selector(panGest(_:)))
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     @objc func panGest(_ pan: UIPanGestureRecognizer) {
         self.panLocationChanged?(self)
     }
     // 支持多手势响应
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.willScroll?(self)
     }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.didScroll?(self, false)
         self.rzLastContentOffset = scrollView.contentOffset
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if decelerate == false {
             self.scrollViewDidEndDecelerating(scrollView)
         }
     }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.didScroll?(self, true)
         self.rzLastContentOffset = scrollView.contentOffset
         self.isUserInteractionEnabled = false
