@@ -227,6 +227,9 @@ open class RZPageContainerView: UIView, UIScrollViewDelegate {
                     return
                 }
             }
+            if self?.isPanSuperView == true {
+                return 
+            }
             // 在上下运动过程中
             let dir = scrollView.rzScrollDirection()
             switch dir {
