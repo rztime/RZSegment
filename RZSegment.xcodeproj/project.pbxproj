@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76221557248F25AF00971356 /* MultipleScrollviewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76221556248F25AF00971356 /* MultipleScrollviewControllerViewController.swift */; };
 		767DE3522469498C00A2BF73 /* RZPageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767DE3512469498C00A2BF73 /* RZPageContainerView.swift */; };
 		767DE3542469561300A2BF73 /* ChildRefreshIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */; };
 		7686A7E4246B8DB300B95FA1 /* TopRefreshIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		70C277DFFB35EC8776F46F64 /* Pods_RZSegment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RZSegment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76221556248F25AF00971356 /* MultipleScrollviewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleScrollviewControllerViewController.swift; sourceTree = "<group>"; };
 		767DE3512469498C00A2BF73 /* RZPageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RZPageContainerView.swift; sourceTree = "<group>"; };
 		767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildRefreshIndexViewController.swift; sourceTree = "<group>"; };
 		7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRefreshIndexViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76221555248F256B00971356 /* scrollAndScroll */ = {
+			isa = PBXGroup;
+			children = (
+				76221556248F25AF00971356 /* MultipleScrollviewControllerViewController.swift */,
+			);
+			path = scrollAndScroll;
+			sourceTree = "<group>";
+		};
+		76221558248F760100971356 /* TopRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */,
+			);
+			path = TopRefresh;
+			sourceTree = "<group>";
+		};
+		76221559248F760900971356 /* ChildRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */,
+			);
+			path = ChildRefresh;
+			sourceTree = "<group>";
+		};
 		76E7C31E245AA16A008CE2E5 = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				76E7C34B245AD66B008CE2E5 /* ChildViewController.swift */,
-				767DE3532469561300A2BF73 /* ChildRefreshIndexViewController.swift */,
-				7686A7E3246B8DB300B95FA1 /* TopRefreshIndexViewController.swift */,
+				76221559248F760900971356 /* ChildRefresh */,
+				76221558248F760100971356 /* TopRefresh */,
+				76221555248F256B00971356 /* scrollAndScroll */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -243,6 +270,7 @@
 				76E7C34C245AD66B008CE2E5 /* ChildViewController.swift in Sources */,
 				76E7C345245AA51B008CE2E5 /* RZSegmentView.swift in Sources */,
 				76E7C32F245AA16A008CE2E5 /* ViewController.swift in Sources */,
+				76221557248F25AF00971356 /* MultipleScrollviewControllerViewController.swift in Sources */,
 				76E7C32B245AA16A008CE2E5 /* AppDelegate.swift in Sources */,
 				76E7C32D245AA16A008CE2E5 /* SceneDelegate.swift in Sources */,
 				767DE3542469561300A2BF73 /* ChildRefreshIndexViewController.swift in Sources */,

@@ -10,16 +10,19 @@ import UIKit
 
 class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, RZPageContainerChildViewDelegate {
     
-    func rzScrollView() -> UIScrollView? {
+    public func rzScrollView() -> UIScrollView? {
         return tableView
     }
+     
+    private let tableView = UITableView.init(frame: .zero, style: .plain)
     
-
-    let tableView = UITableView.init(frame: .zero, style: .plain)
+    private var datas : [Int] = []
     
-    var datas : [Int] = []
+    // 是否需要顶部刷新功能
+    public var needRefresh = false
+    // 刷新完成之后的回调
+    public var refreshComplete : (() -> Void)?
     
-    var refreshComplete : (() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,15 +35,16 @@ class ChildViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] in
-            self?.requestDataByRefresh(refresh: true)
-        })
-//
+        if needRefresh {
+            tableView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: { [weak self] in
+                self?.requestDataByRefresh(refresh: true)
+            })
+        }
+ 
         tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: { [weak self] in
             self?.requestDataByRefresh(refresh: false)
         })
-        self.tableView.mj_header?.beginRefreshing()
-//        requestDataByRefresh(refresh:true)
+        requestDataByRefresh(refresh:true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

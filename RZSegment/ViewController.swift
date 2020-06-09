@@ -16,33 +16,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        let seg =  RZSegmentView()
-//
-//        self.view.addSubview(seg)
-//        seg.snp.makeConstraints { (make) in
-//            make.center.width.equalToSuperview()
-//            make.height.equalTo(44)
-//        }
-//        seg.backgroundColor = UIColor.black
-//        seg.rzDefaultItemStyle = .init(font: .systemFont(ofSize: 14), textColor: .gray)
-//        seg.rzHightLightItemStyle = .init(font: .systemFont(ofSize: 16), textColor: .white)
-//        seg.rzDidChangedIndex = { (v , index) in
-//            self.navigationController?.pushViewController(IndexDemoViewController(), animated: true)
-//        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            seg.rzItems = [
-//                 .init(text:"标题1"),
-//                 .init(text:"标题2"),
-//                 .init(text:"标题3"),
-//             ]
-//            seg.reloadData(animation: true)
         segmentOne()
         segmentTwo()
         segmentThree()
-        segmentFour()
-//        }
-//        let scrollView = UIScrollView.init(frame: self.view.bounds)
-//        self.view.addSubview(scrollView)
+        segmentFour() 
     }
     // 常用，只有常态文字和高亮（选中）状态文字
     func segmentOne() {
@@ -105,6 +82,9 @@ class ViewController: UIViewController {
   
         segment.rzDidChangedIndex = { (seg, index) in
             print("点击：\(index)")
+            if index == 2 {
+                self.navigationController?.pushViewController(MultipleScrollviewControllerViewController(), animated: true)
+            }
         }
         
         segment.rzBottomLineStyle = .auto(leadingMargin: 10, height: 3, bottomMargin: 3, color: .red)
@@ -114,7 +94,7 @@ class ViewController: UIViewController {
         segment.rzItems = [
             .init(text: "标题", badge: "3"),
             .init(text: "标题"),
-            .init(text: "标题"),
+            .init(text: "多层嵌套"),
         ]
         segment.reloadData()
     }

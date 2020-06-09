@@ -29,11 +29,14 @@ class ChildRefreshIndexViewController: UIViewController {
             .init(text: "关注"),
         ]
         let vc1 = ChildViewController()
-            vc1.title = "第一个文本"
-            let vc2 = ChildViewController()
-            vc2.title = "第二个文本"
-            let vc3 = ChildViewController()
-            vc3.title = "第三个文本"
+        vc1.needRefresh = true
+        vc1.title = "第一个文本"
+        let vc2 = ChildViewController()
+        vc2.needRefresh = true
+        vc2.title = "第二个文本"
+        let vc3 = ChildViewController()
+        vc3.needRefresh = true
+        vc3.title = "第三个文本"
         
         self.addChild(vc1)
         self.addChild(vc2)
@@ -44,17 +47,7 @@ class ChildRefreshIndexViewController: UIViewController {
 
         topView.backgroundColor = .red
         pageView?.setCurrentIndex(index: 1, animation: true)
-        pageView?.reloadData()
-        pageView?.autoFixContentViewOffsetY = false
-//        pageView?.contentView.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {[weak self] in
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self?.pageView?.contentView.mj_header?.endRefreshing()
-//                let x = arc4random() % 255
-//                self?.topView.backgroundColor = UIColor.init(red: CGFloat(x) / 255.0, green: CGFloat(x) / 255.0, blue: CGFloat(x) / 255.0, alpha: 1)
-//                self?.pageView?.topView = self?.topView
-//                self?.pageView?.reloadData()
-//            }
-//        })
+        pageView?.reloadData() 
     } 
 }
 
